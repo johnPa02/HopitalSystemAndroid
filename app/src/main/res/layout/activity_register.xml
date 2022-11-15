@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textSize="35sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#2196F3"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/edtFirstNameDK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="First Name"
+        android:inputType="text"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/edtLastNameDK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Last Name"
+        android:inputType="text"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/dtEmailDK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/dtSdtDK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mobile"
+        android:inputType="phone"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/dtPassDK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/edtConfPassDK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/btnDK"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:backgroundTint="#2196F3"
+        android:layout_marginTop="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="70dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="If you are already registed"
+            android:textColor="#C1BBBB"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tvDN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textSize="15sp"
+            android:textColor="#2196F3"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
