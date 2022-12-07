@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    app:cardCornerRadius="10dp"
+    android:layout_marginBottom="10dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,21 +18,13 @@
             android:layout_height="120dp"
             android:layout_marginTop="17dp"
             android:src="@drawable/appoinment"/>
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PATIENT DETAILS"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_toEndOf="@+id/image"
-            android:textSize="20sp"/>
+
 
         <LinearLayout
             android:id="@+id/linear_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
+            android:layout_centerVertical="true"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/image"
@@ -40,9 +36,8 @@
                 android:layout_height="wrap_content"
                 android:text="Patient's name"
                 android:textColor="@color/black"
-                android:textSize="17sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/patient_email"
                 android:layout_width="wrap_content"
@@ -50,13 +45,13 @@
                 android:text="Email" />
 
             <TextView
-                android:id="@+id/phone"
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0399666498" />
+                android:text="01/01/2022" />
 
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/sick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Severe headache" />

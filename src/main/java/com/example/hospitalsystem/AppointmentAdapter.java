@@ -1,29 +1,30 @@
 package com.example.hospitalsystem;
 
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-
+import com.google.firebase.firestore.DocumentSnapshot;
 
 public class AppointmentAdapter extends FirestoreRecyclerAdapter<Appointment,AppointmentAdapter.AppointmentViewHolder> {
 
-
-
-    public AppointmentAdapter(@NonNull FirestoreRecyclerOptions<Appointment> options) {
+    private ItemClickListener itemClickListener;
+    public AppointmentAdapter(@NonNull FirestoreRecyclerOptions<Appointment> options,ItemClickListener itemClickListener) {
         super(options);
+        this.itemClickListener = itemClickListener;
     }
+
 
     @NonNull
     @Override
@@ -33,30 +34,43 @@ public class AppointmentAdapter extends FirestoreRecyclerAdapter<Appointment,App
         return new AppointmentViewHolder(view);
     }
 
-
     @Override
     protected void onBindViewHolder(@NonNull AppointmentViewHolder holder, int position, @NonNull Appointment model) {
         holder.name.setText(model.getPatientName());
         holder.email.setText(model.getEmail());
-        holder.phone.setText(model.getPhone());
-        holder.desc.setText(model.getDesc());
+        holder.date.setText(model.getDate());
+        holder.sick.setText(model.getSick());
         if (model.getStatus().equals("done")){
             holder.status.setBackground(holder.status.getResources().getDrawable(R.drawable.tv_active));
             holder.status.setTextColor(Color.parseColor("#25be4f"));
         }
         holder.status.setText(model.getStatus());
+        holder.cancel.setOnClickListener(view -> getSnapshots().getSnapshot(holder.getBindingAdapterPosition()).getReference().delete());
     }
 
+    public interface ItemClickListener{
+        void onItemClick(DocumentSnapshot documentSnapshot,int position);
+    }
     public class AppointmentViewHolder extends RecyclerView.ViewHolder{
-        TextView name,email,phone,desc,status;
+        TextView name,email,date,sick,status;
+        Button cancel;
 
         public AppointmentViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.patient_name);
             email = itemView.findViewById(R.id.patient_email);
-            phone = itemView.findViewById(R.id.phone);
-            desc = itemView.findViewById(R.id.description);
+            date = itemView.findViewById(R.id.date);
+            sick = itemView.findViewById(R.id.sick);
             status = itemView.findViewById(R.id.status);
+            cancel = itemView.findViewById(R.id.cancel);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getBindingAdapterPosition();
+                    itemClickListener.onItemClick(getSnapshots().getSnapshot(position),position);
+                }
+            });
         }
     }
 
