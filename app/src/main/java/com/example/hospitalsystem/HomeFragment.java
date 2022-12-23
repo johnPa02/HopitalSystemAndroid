@@ -16,6 +16,8 @@ import android.widget.Button;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -24,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class HomeFragment extends Fragment{
 
     private AppointmentAdapter adapter;
+    private FirebaseUser user;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -38,19 +41,31 @@ public class HomeFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FirestoreRecyclerOptions<Appointment> options = new FirestoreRecyclerOptions.Builder<Appointment>()
-                .setQuery(FirebaseFirestore.getInstance().collection("Appointments"),Appointment.class).build();
+        FirestoreRecyclerOptions<Appointment> options;
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user.getEmail().contains("doctor")) {
+            options = new FirestoreRecyclerOptions.Builder<Appointment>()
+                    .setQuery(FirebaseFirestore.getInstance().collection("Appointments"), Appointment.class).build();
+        }
+        else {
+            options = new FirestoreRecyclerOptions.Builder<Appointment>()
+                    .setQuery(FirebaseFirestore.getInstance().collection("Appointments").whereEqualTo("uid", user.getEmail()),Appointment.class).build();
+        }
         adapter = new AppointmentAdapter(options, new AppointmentAdapter.ItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                //Appointment appointment = documentSnapshot.toObject(Appointment.class);
                 String date = documentSnapshot.getString("date");
-                String drName = documentSnapshot.getString("drName");
+                String drId = documentSnapshot.getString("doctor");
                 String time = documentSnapshot.getString("time");
+                String room = documentSnapshot.getString("room");
+                String id = documentSnapshot.getId();
+
                 Intent intent = new Intent(getActivity(), DetailBookingActivity.class);
                 intent.putExtra("date",date);
-                intent.putExtra("drName",drName);
+                intent.putExtra("doctor",drId);
                 intent.putExtra("time",time);
+                intent.putExtra("id",id);
+                intent.putExtra("room",room);
                 startActivity(intent);
             }
         });

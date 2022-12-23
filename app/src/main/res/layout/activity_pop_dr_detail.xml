@@ -2,11 +2,27 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stars"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_detail_appoitment"
-    android:backgroundTint="@color/blue2"
+    android:backgroundTint="@color/white"
     tools:context=".PopDrDetail">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/curve_toolbar" />
+    </androidx.cardview.widget.CardView>
+
 
     <TextView
         android:id="@+id/textView26"
@@ -24,33 +40,36 @@
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="35dp"
         android:text="phanquoctoan@gmail.com"
-        android:textColor="#BA000000"
-        android:textSize="16sp"
+        android:textColor="@color/teal_700"
+        android:textSize="19sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView23"
+        app:layout_constraintStart_toStartOf="@+id/textView23"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
         android:id="@+id/textView23"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="18dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/ic_baseline_email_24"
-        android:backgroundTint="@color/purple_700"
+        android:backgroundTint="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView3"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="32dp"
+        android:elevation="2dp"
         android:src="@drawable/user"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,12 +77,13 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="28dp"
         android:text="Phan Quốc Toàn"
-        android:textColor="@color/white"
+        android:textColor="@color/teal_700"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/circleImageView3" />
 
@@ -83,24 +103,38 @@
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
         android:text="0399666498"
-        android:textColor="#BA000000"
-        android:textSize="25sp"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView19"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+        app:layout_constraintTop_toBottomOf="@+id/star" />
 
     <TextView
         android:id="@+id/textView19"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/ic_baseline_local_phone_24"
-        android:backgroundTint="@color/purple_700"
+        android:backgroundTint="#0CC33E"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/star" />
+
+    <RatingBar
+        android:id="@+id/star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:backgroundTint="#FFEB3B"
+        android:clickable="false"
+        android:numStars="5"
+        android:progressTint="#FFEB3B"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

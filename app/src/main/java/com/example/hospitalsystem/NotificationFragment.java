@@ -17,6 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -91,9 +92,13 @@ public class NotificationFragment extends Fragment {
                     avt.setImageBitmap(bitmap);
                     splashScreen.setVisibility(View.GONE);
                 }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    splashScreen.setVisibility(View.GONE);
+                }
             });
         }catch (IOException e){
-            e.printStackTrace();
         }
 
         db.collection("Users").whereEqualTo("email",userEmail)

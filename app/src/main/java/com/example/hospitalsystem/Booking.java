@@ -18,6 +18,8 @@ import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -30,6 +32,7 @@ public class Booking extends AppCompatActivity {
     private EditText pickDate;
     private ImageView calenderBtn;
     int year,month,day;
+    private FirebaseUser user;
     private AutoCompleteTextView autoCompleteTextView;
     private AutoCompleteTextView sickAct;
     private String[] times = {"7:00 - 9:00","9:00 - 11:00","13:00 - 15h:00","15:00 - 17:00"};
@@ -49,6 +52,8 @@ public class Booking extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         pickDate = findViewById(R.id.pickDate);
         calenderBtn = findViewById(R.id.calendarBtn);
@@ -110,6 +115,7 @@ public class Booking extends AppCompatActivity {
         items.put("sick",actSick.getText().toString());
         items.put("desc",etDsc.getText().toString());
         items.put("status","waiting");
+        items.put("uid", user.getEmail());
 
         db.collection("Appointments").add(items)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {

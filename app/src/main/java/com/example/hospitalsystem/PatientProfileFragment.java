@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.example.hospitalsystem.databinding.FragmentPatientProfileBinding;
@@ -137,7 +138,10 @@ public class PatientProfileFragment extends Fragment {
         userDetail.put("address", address);
         userDetail.put("cccd", cccd);
 
-        storageReference.putFile(selectedImage);
+        if (selectedImage!= null){
+            storageReference.putFile(selectedImage);
+        }
+
 
         db.collection("Users").whereEqualTo("email", userEmail)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -147,7 +151,12 @@ public class PatientProfileFragment extends Fragment {
                             DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
                             String documentId = documentSnapshot.getId();
                             db.collection("Users").document(documentId)
-                                    .update(userDetail);
+                                    .update(userDetail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getActivity().getApplicationContext(),"Cập nhật thông tin thành công",Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
                         }
                     }
                 });
