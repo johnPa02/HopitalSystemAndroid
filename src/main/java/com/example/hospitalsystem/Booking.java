@@ -18,6 +18,8 @@ import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -44,6 +46,8 @@ public class Booking extends AppCompatActivity {
     private AutoCompleteTextView actTime,actSick;
     private Button bookBtn;
     private FirebaseFirestore db;
+
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +94,7 @@ public class Booking extends AppCompatActivity {
         actSick = findViewById(R.id.sick_act);
         etDsc = findViewById(R.id.etDsc);
         bookBtn = findViewById(R.id.bookBtn);
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         db = FirebaseFirestore.getInstance();
         bookBtn.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +115,7 @@ public class Booking extends AppCompatActivity {
         items.put("sick",actSick.getText().toString());
         items.put("desc",etDsc.getText().toString());
         items.put("status","waiting");
+        items.put("uid", user.getEmail());
 
         db.collection("Appointments").add(items)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {

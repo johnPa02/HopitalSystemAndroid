@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -57,11 +58,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String pwd = etPwd.getText().toString();
 
         if(TextUtils.isEmpty(email)){
-            etEmail.setError("Email cannot be empty!");
+            etEmail.setError("Email không được để trống!");
+            etEmail.requestFocus();
+        }
+        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            etEmail.setError("Email không hợp lệ!");
             etEmail.requestFocus();
         }
         else if(TextUtils.isEmpty(pwd)){
-            etPwd.setError("Password cannot be empty!");
+            etPwd.setError("Mật khẩu không được để trống!");
+            etPwd.requestFocus();
+        }
+        else if(pwd.length() < 6) {
+            etPwd.setError("Mật khẩu phải từ 6 kí tự trở lên!");
             etPwd.requestFocus();
         }
         else{
@@ -69,11 +78,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(LoginActivity.this,"User logged in successfully",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this,"Đăng nhập thành công!",Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(LoginActivity.this,MainActivity.class));
                     }
                     else{
-                        Toast.makeText(LoginActivity.this,"Login in error: "+task.getException().getMessage() ,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this,"Nhập sai email hoặc mật khẩu!" ,Toast.LENGTH_SHORT).show();
                     }
                 }
             });

@@ -15,11 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 public class AppointmentAdapter extends FirestoreRecyclerAdapter<Appointment,AppointmentAdapter.AppointmentViewHolder> {
 
     private ItemClickListener itemClickListener;
+    private FirebaseUser user;
     public AppointmentAdapter(@NonNull FirestoreRecyclerOptions<Appointment> options,ItemClickListener itemClickListener) {
         super(options);
         this.itemClickListener = itemClickListener;
@@ -45,6 +48,11 @@ public class AppointmentAdapter extends FirestoreRecyclerAdapter<Appointment,App
             holder.status.setTextColor(Color.parseColor("#25be4f"));
         }
         holder.status.setText(model.getStatus());
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user.getUid().contains("doctor"))
+        {
+            holder.cancel.setVisibility(View.GONE);
+        }
         holder.cancel.setOnClickListener(view -> getSnapshots().getSnapshot(holder.getBindingAdapterPosition()).getReference().delete());
     }
 

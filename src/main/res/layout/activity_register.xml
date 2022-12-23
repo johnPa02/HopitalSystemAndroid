@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="15dp"
     tools:context=".MainActivity">
 
     <TextView
@@ -15,62 +15,108 @@
         android:textSize="35sp"
         android:gravity="center"
         android:textStyle="bold"
-        android:textColor="#2196F3"
-        android:layout_marginTop="10dp"/>
+        android:textColor="@color/blue2"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"/>
 
-    <EditText
-        android:id="@+id/edtFirstNameDK"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="First Name"
-        android:inputType="text"
-        android:textSize="20sp"
-        android:layout_marginTop="30dp"/>
+        app:boxBackgroundColor="@color/white"
+        app:hintEnabled="true"
+        android:layout_marginTop="10dp">
 
-    <EditText
-        android:id="@+id/edtLastNameDK"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:textSize="20sp"
+            android:singleLine="true">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Last Name"
-        android:inputType="text"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"/>
+        app:boxBackgroundColor="@color/white"
+        android:layout_marginTop="10dp"
+        app:hintEnabled="true">
 
-    <EditText
-        android:id="@+id/dtEmailDK"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textSize="20sp"
+            android:inputType="textEmailAddress">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"/>
+        app:boxBackgroundColor="@color/white"
+        android:layout_marginTop="10dp"
+        app:hintEnabled="true">
 
-    <EditText
-        android:id="@+id/dtSdtDK"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phone"
+            android:maxLength="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mobile"
+            android:textSize="20sp"
+            android:inputType="phone">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Mobile"
-        android:inputType="phone"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"/>
+        app:boxBackgroundColor="@color/white"
+        app:hintEnabled="true"
+        android:layout_marginTop="10dp"
+        app:passwordToggleEnabled="true">
 
-    <EditText
-        android:id="@+id/dtPassDK"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pass1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:textSize="20sp"
+            android:inputType="textPassword">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"/>
+        app:boxBackgroundColor="@color/white"
+        app:hintEnabled="true"
+        android:layout_marginTop="10dp"
+        app:passwordToggleEnabled="true">
 
-    <EditText
-        android:id="@+id/edtConfPassDK"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Confirm Password"
-        android:inputType="textPassword"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pass2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:textSize="20sp"
+            android:inputType="textPassword">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/btnDK"
@@ -79,21 +125,22 @@
         android:text="Sign Up"
         android:textSize="20sp"
         android:layout_gravity="center"
-        android:backgroundTint="#2196F3"
-        android:layout_marginTop="20dp"/>
+        android:backgroundTint="@color/blue2"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="50dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="If you are already registed"
-            android:textColor="#C1BBBB"
+            android:textColor="@color/gray"
             android:textSize="15sp"/>
 
         <TextView
@@ -102,7 +149,7 @@
             android:layout_height="wrap_content"
             android:text="Sign In"
             android:textSize="15sp"
-            android:textColor="#2196F3"
+            android:textColor="@color/blue2"
             android:textStyle="bold"
             android:layout_marginLeft="10dp"/>
 
