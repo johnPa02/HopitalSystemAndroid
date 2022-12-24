@@ -19,9 +19,12 @@
         android:theme="@style/Theme.HospitalSystem"
         tools:targetApi="31">
         <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".RatingActivity"
             android:exported="false"
-            android:parentActivityName=".DetailBookingActivity"/>
+            android:parentActivityName=".DetailBookingActivity" />
         <activity
             android:name=".PopDrDetail"
             android:exported="false"
